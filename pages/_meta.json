@@ -1,0 +1,16 @@
+{
+  "index": "Introduction",
+  "about": {
+    "title": "Designations",
+    "type": "page",
+    "href": "https://designation.obaol.com",
+    "newWindow": true,
+    "rs": "Research Specialist"
+  },
+  "contact": {
+    "title": "Obaol Guide",
+    "type": "page",
+    "href": "https://guide.obaol.com",
+    "newWindow": true
+  }
+}
