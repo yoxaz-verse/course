@@ -1,0 +1,61 @@
+# Phase 13: Technical Architecture & The "Hidden System" Maintenance
+
+**Goal:** To understand the background infrastructure of the OBAOL Supreme ecosystem. This phase is for the "Power Operator" who needs to understand how the platform’s technical layers (MCP, Web-to-App sync, and Panel Roles) interact to prevent system failures during high-volume trades.
+
+---
+
+## 13.1 The Role-Based Access Control (RBAC) System
+OBAOL Supreme is a **Multi-Tenant Environment**. Every participant sees a different version of the same trade based on their specific utility.
+
+* **The Operator Panel (The Master View):** * Full visibility of all subflows. 
+    * Authority to "Greenlight" milestones.
+    * Access to the **MCP Command Line** for data analysis.
+* **The Associate Panels (The Worker Views):** * **Transporter:** Sees only pickup/drop-off points and the "Upload Lorry Receipt" button.
+    * **Warehouse Manager:** Sees only the "Inward/Outward Inventory" log and "Oyo Booking" status.
+    * **Packaging Unit:** Sees only the "Branding Specs" and "Dispatch Tracker."
+* **The User/Buyer Panel (The Progress View):** * Sees the high-level **6-Phase Pipeline** progress bar.
+    * Access to the **Sample Request Feature** and "Pay Now" triggers.
+
+---
+
+## 13.2 Web-to-Jio Mobility Sync
+Since many on-ground associates (Truck drivers/Warehouse workers) use **Jio devices**, the Operator must manage the "Data Latency" gap.
+
+1.  **Low-Bandwidth Optimization:** The Associate Panels are optimized for 4G/5G mobile use. 
+2.  **Offline Verification:** If an associate is in a "Dark Zone" (no signal), they can take the **Phase 04 Audit Photos**. The system will auto-sync and timestamp them the moment they hit a network.
+3.  **Operator Action:** If a subflow is "Offline," use the **Manual Ping Feature** on your panel to alert the associate via SMS to sync their data.
+
+---
+
+## 13.3 System Governance: The "Audit Trail" Law
+In bulk trade, "If it isn't logged, it didn't happen." The system maintains an immutable record of:
+
+* **Log 01:** Every price change in the **Live Marketplace**.
+* **Log 02:** Every message sent between Operator and Buyer.
+* **Log 03:** Every document uploaded to the **Main Order Vault**.
+* **Why it matters:** This data is used by the **MCP (AI)** to calculate your **Trust Score**. A broken audit trail reduces your ranking and blocks you from Phase 12 (Export) trades.
+
+---
+
+## 13.4 The "Zero-Pressure" Operating Logic
+The system is designed to remove "Operator Stress" through automation:
+
+* **Auto-Invoicing:** Once the **Quality Subflow** and **Logistics Subflow** are marked "Complete," the system generates the final commercial invoice.
+* **Bidding Auto-Close:** You set a timer (e.g., 2 hours). The **Logistics Bidding** closes automatically, and the system highlights the top 3 bids for your final click.
+
+---
+
+## ❓ Phase 13: Q&A (Quality Assurance)
+
+> **Q: What happens if the website goes down during a live trade?**
+> **A:** OBAOL runs on a redundant cloud architecture. Even if the front-end marketplace is down for maintenance, the **Execution Panels** and **MCP APIs** remain active to ensure active trades are never stalled.
+
+> **Q: Can I change an Associate's Role after onboarding them?**
+> **A:** No. Roles are fixed to ensure data security. If a Transporter also wants to provide Packaging, they must register a separate **Associate Sub-Panel** for that specific subflow.
+
+> **Q: How do I know if the "Inventory Feature" is accurate?**
+> **A:** The system cross-references the **Warehouse Inventory** with the **Logistics Outward Slips**. If 500 MT was inwarded but 520 MT is outwarded, the system flags a "Data Discrepancy" and locks the trade.
+
+---
+
+**Phase 13 is complete. You now understand the skeletal structure of the platform.**
